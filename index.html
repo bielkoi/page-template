@@ -1,254 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BI-EL | Template LP & AMP</title>
-
+    <title>BI-EL | LP & AMP</title>
+    <link rel="shortcut icon" href="https://imagekoi.io/images/2025/03/07/favicon-koi-2025.png">
+    <meta name="distribution" content="global" />
+    <meta name="language" content="Id-ID"/>
+    <meta name="author" content="biel"/>
+    <meta property="og:site_name" content="BI-EL" />
+    <meta property="og:title" content="BI-EL"/>
+    <meta property="og:description" content="BI-EL" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
     />
-
     <style>
       :root {
-        --bg-black: #000000;
-        --bg-gray: #0a0a0a;
         --accent-blue: #007bff;
-        --text-white: #ffffff;
-        --text-muted: #555555;
-        --brutal-border: 1px solid #222;
       }
-
       body {
-        background-color: var(--bg-black);
-        font-family:
-          "Inter",
-          -apple-system,
-          sans-serif;
-        color: var(--text-white);
-        -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
+        font-family: "Inter", sans-serif;
+        letter-spacing: 0.5px;
       }
 
-      /* --- TOP SYSTEM HEADER --- */
-      .terminal-top-bar {
-        background: #000;
-        border-bottom: 1px solid #222;
-        padding: 12px 0;
-      }
-
-      .brand-square {
-        width: 35px;
-        height: 35px;
-        background: var(--accent-blue);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1rem;
-        box-shadow: 3px 3px 0px rgba(0, 123, 255, 0.2);
-      }
-
-      .breadcrumb {
-        font-size: 0.6rem;
-        margin-bottom: 0;
-      }
-      .breadcrumb-item + .breadcrumb-item::before {
-        content: ">";
-        color: var(--text-muted);
-      }
-      .breadcrumb-item a {
-        color: var(--text-muted);
-        text-decoration: none;
-      }
-      .breadcrumb-item.active {
-        color: var(--accent-blue);
-        font-weight: 800;
-      }
-
-      .status-pulse {
-        width: 8px;
-        height: 8px;
-        background: #00ff00;
-        border-radius: 50%;
-        animation: pulse 2s infinite;
-      }
-
-      @keyframes pulse {
-        0% {
-          transform: scale(0.95);
-          box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
-        }
-        70% {
-          transform: scale(1);
-          box-shadow: 0 0 0 6px rgba(0, 255, 0, 0);
-        }
-        100% {
-          transform: scale(0.95);
-          box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
-        }
-      }
-
-      /* --- COMPACT CONTROL PANEL --- */
-      .control-panel {
-        background: var(--bg-gray);
-        border-bottom: var(--brutal-border);
-        padding: 10px 0;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-      }
-
-      .filter-select {
-        background: #111;
-        border: 1px solid #333;
-        color: var(--text-white);
-        font-size: 0.7rem;
-        font-weight: 800;
-        padding: 8px 12px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        border-radius: 0;
-        cursor: pointer;
-        transition: 0.2s;
-      }
-
-      .filter-select:focus {
-        outline: none;
-        border-color: var(--accent-blue);
-      }
-
-      .label-tactical {
-        font-size: 0.55rem;
-        color: var(--accent-blue);
-        font-weight: 900;
-        margin-bottom: 3px;
-        display: block;
-        letter-spacing: 1px;
-      }
-
-      /* --- PROJECT GRID --- */
-      /* --- BASE PREVIEW WINDOW --- */
+      /* RE-STABILIZED PREVIEW WINDOW */
       .preview-window {
         width: 100%;
-        height: 220px; /* Uniform height for a good balance */
-        background: #000;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        border-bottom: 1px solid #1a1a1a;
-      }
-
-      /* --- DESKTOP VIEW (Standard) --- */
-      .preview-window iframe {
-        width: 1280px;
-        height: 1000px;
-        border: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: scale(0.24); /* Standard desktop scale */
-        transform-origin: 0 0;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-
-      /* --- MOBILE/AMP FULL VIEW --- */
-      .preview-window.is-amp {
-        height: 280px; /* Slightly taller for mobile pages to look natural */
-      }
-
-      .preview-window.is-amp iframe {
-        width: 375px; /* Standard mobile width */
-        height: 1000px; /* Long render height */
-        top: 0;
-        left: 50%;
-        /* The scale is calculated to make 375px fill the card width (~300px) */
-        /* 0.8 to 0.9 usually makes it look "Full" depending on your column count */
-        transform: translateX(-50%) scale(0.9);
-        transform-origin: top center;
-      }
-
-      /* UI Feedback */
-      .preview-window iframe.loaded {
-        opacity: 0.85;
-      }
-      .review-card:hover iframe.loaded {
-        opacity: 1;
-      }
-
-      /* Skeleton / Loading Icon */
-      .preview-loading {
-        position: absolute;
-        font-size: 1.5rem;
-        color: #222;
-        z-index: 1;
-      }
-
-      .review-card:hover .preview-loading {
-        color: var(--accent-blue);
-      }
-
-      /* --- CARD CONTAINER --- */
-      .review-card {
-        background: #0a0a0a;
-        border: 1px solid #222;
-        padding: 0; /* Remove default padding to allow edge-to-edge tags */
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        overflow: hidden;
-      }
-
-      .review-card:hover {
-        border-color: var(--accent-blue);
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 123, 255, 0.1);
-      }
-
-      /* --- TOP CORNER TAGS --- */
-      .niche-tag {
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: var(--accent-blue);
-        color: white;
-        font-size: 0.55rem;
-        font-weight: 900;
-        padding: 4px 10px;
-        text-transform: uppercase;
-        z-index: 10;
-        letter-spacing: 1px;
-      }
-
-      .thema-tag {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: var(--accent-blue);
-        color: white;
-        font-size: 0.55rem;
-        font-weight: 800;
-        padding: 4px 10px;
-        text-transform: uppercase;
-        z-index: 10;
-        border-left: 1px solid #222;
-        border-bottom: 1px solid #222;
-      }
-
-      /* --- BASE PREVIEW WINDOW --- */
-      /* --- RESTORED UNIFORM PREVIEW WINDOW --- */
-      .preview-window {
-        width: 100%;
-        height: 180px; /* Uniform height for all cards */
+        height: 180px;
         background: #000;
         position: relative;
         overflow: hidden;
@@ -257,298 +42,218 @@
         justify-content: center;
         border-bottom: 1px solid #1a1a1a;
       }
-
       .preview-window iframe {
-        /* Virtual Desktop Resolution */
         width: 1280px;
         height: 1200px;
         border: none;
         position: absolute;
         top: 0;
         left: 0;
-        /* Scale down to fit the card thumbnail */
         transform: scale(0.25);
         transform-origin: 0 0;
         pointer-events: none;
         opacity: 0;
         transition: opacity 0.8s ease;
       }
-
       .preview-window iframe.loaded {
         opacity: 0.8;
       }
-
       .review-card:hover iframe.loaded {
         opacity: 1;
       }
 
-      /* Base Card Styling for consistency */
+      /* TACTICAL UI ELEMENTS */
       .review-card {
         background: #0a0a0a;
         border: 1px solid #1a1a1a;
-        transition: all 0.3s ease;
+        transition: transform 0.2s;
+        position: relative;
+      }
+      .review-card:hover {
+        border-color: #333;
+      }
+      .niche-tag,
+      .thema-tag {
+        position: absolute;
+        top: 10px;
+        font-size: 0.55rem;
+        font-weight: 900;
+        padding: 2px 8px;
+        z-index: 5;
+        text-transform: uppercase;
+      }
+      .niche-tag {
+        left: 10px;
+        background: var(--accent-blue);
+        color: #000;
+      }
+      .thema-tag {
+        right: 10px;
+        background: #222;
+        color: #fff;
       }
 
-      /* Update the body to accommodate the taller preview */
-      .card-body {
-        padding: 12px 15px 15px 15px; /* Tighter top padding */
-        flex-grow: 1;
-      }
-
-      /* --- INFO SECTION (BOTTOM) --- */
       .card-body {
         padding: 15px;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
       }
-
       .item-name {
-        font-size: 0.85rem;
-        font-weight: 900;
+        font-size: 0.8rem;
+        font-weight: 800;
         color: #fff;
-        text-transform: uppercase;
-        margin-bottom: 2px;
-        letter-spacing: 0.5px;
+        margin-bottom: 4px;
       }
-
       .item-type-label {
         font-size: 0.6rem;
-        color: var(--accent-blue);
+        color: #555;
         font-weight: 700;
         text-transform: uppercase;
-        margin-bottom: 15px;
-      }
-
-      /* --- UPDATED BUTTON GROUP --- */
-      .card-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* Equal width buttons */
-        gap: 8px;
-        margin-top: auto;
       }
 
       .btn-action {
-        background: #111;
-        border: 1px solid #333;
-        color: #fff;
-        font-size: 0.6rem;
-        font-weight: 900;
-        padding: 8px 4px;
+        flex: 1;
         text-align: center;
+        padding: 8px;
+        font-size: 0.65rem;
+        font-weight: 900;
+        border: 1px solid #1a1a1a;
+        color: #fff;
         text-decoration: none;
         transition: 0.2s;
+      }
+      .btn-action:hover {
+        background: #111;
+        border-color: #444;
+      }
+      .card-actions {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        letter-spacing: 0.5px;
+        gap: 5px;
+        margin-top: 15px;
       }
 
-      /* Analyze Button (Blue on Hover) */
-      .btn-analyze:hover {
+      /* FILTER BUTTONS */
+      .filter-btn {
+        background: #0a0a0a;
+        border: 1px solid #222;
+        color: #666;
+        padding: 6px 15px;
+        font-size: 0.65rem;
+        font-weight: 900;
+      }
+      .filter-btn.active {
         background: var(--accent-blue);
-        border-color: var(--accent-blue);
-        color: white;
-      }
-
-      /* Download Button (Gray/White on Hover) */
-      .btn-download:hover {
-        background: #eee;
-        border-color: #eee;
         color: #000;
-      }
-
-      .btn-action i {
-        font-size: 0.75rem;
-      }
-
-      .review-card:hover .btn-launch {
-        background: var(--accent-blue);
         border-color: var(--accent-blue);
       }
 
-      .footer-copyright {
-        font-size: 0.6rem;
-        font-weight: 800;
-        color: #444;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-      }
-      /* --- SIMPLE FOOTER STYLES --- */
+      /* FOOTER */
       .simple-footer {
-        background-color: #050505;
+        background: #050505;
         border-top: 1px solid #1a1a1a;
         padding: 20px 0;
-        margin-top: 60px;
-        font-family: "Inter", sans-serif;
+        margin-top: 40px;
       }
-
       .footer-wrap {
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
-
-      .footer-section {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
       .system-status-dot {
         width: 6px;
         height: 6px;
-        background-color: var(--accent-blue);
+        background: var(--accent-blue);
         border-radius: 50%;
-        box-shadow: 0 0 8px var(--accent-blue);
         display: inline-block;
+        box-shadow: 0 0 8px var(--accent-blue);
       }
-
       .footer-brand {
         font-size: 0.7rem;
         font-weight: 900;
-        letter-spacing: 1.5px;
         color: #fff;
+        margin-left: 10px;
       }
-
       .footer-meta {
         font-size: 0.65rem;
-        font-weight: 700;
         color: #555;
-        letter-spacing: 0.5px;
       }
-
-      .footer-divider {
-        color: #222;
-        font-size: 0.7rem;
-      }
-
       .footer-clock {
         font-size: 0.7rem;
         font-weight: 800;
         color: var(--accent-blue);
-        font-family: monospace;
         background: #0f0f0f;
         padding: 4px 8px;
         border: 1px solid #1a1a1a;
+        font-family: monospace;
       }
-
-      .footer-deco {
-        flex-grow: 1;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, #111, transparent);
-        margin: 0 40px;
-      }
-
-      /* Ensure the footer wrap stays balanced */
-      .footer-wrap {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #111;
-        padding-bottom: 15px;
-      }
-
-      /* If you prefer a centered copyright on all screens, use this: */
-      .simple-footer .container-fluid {
-        max-width: 1400px;
-      }
-
-      @media (max-width: 576px) {
-        .item-name {
-          font-size: 0.75rem;
-        }
+      .footer-copyright {
+        font-size: 0.6rem;
+        color: #444;
+        font-weight: 800;
+        letter-spacing: 1px;
       }
     </style>
   </head>
-  <body>
-    <header class="terminal-top-bar">
-      <div
-        class="container-fluid d-flex justify-content-between align-items-center"
-      >
-        <div class="d-flex align-items-center">
-          <div class="brand-square me-3">
-            <i class="bi bi-layers-half"></i>
-          </div>
-          <div>
-            <h1
-              class="h6 mb-0 fw-900 letter-spacing-2"
-              style="font-size: 0.75rem"
-            >
-              BI-EL_ARCHIVE_SYSTEM_V1
-            </h1>
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">ROOT</a></li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  ARCHIVE
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-        <div class="system-status d-none d-md-flex align-items-center">
-          <div class="status-pulse me-2"></div>
-          <span class="small fw-800 opacity-50" style="font-size: 0.6rem"
-            >OPERATIONAL // 2026.04.14</span
+  <body class="bg-black text-white">
+    <nav class="navbar navbar-expand-lg border-bottom border-secondary py-3">
+      <div class="container-fluid px-4">
+        <a class="navbar-brand fw-black letter-spacing-2" href="#"
+          ><span class="text-primary">CORE</span>_TERMINAL</a
+        >
+        <div class="ms-auto d-flex align-items-center">
+          <span
+            class="badge bg-dark border border-secondary text-muted py-2 px-3"
           >
+            <span class="system-status-dot me-2"></span>SYSTEM_ONLINE
+          </span>
         </div>
       </div>
-    </header>
+    </nav>
 
-    <div class="control-panel">
-      <div class="container-fluid">
-        <div class="row g-2 align-items-end">
-          <div class="col-6 col-md-auto">
-            <span class="label-tactical">SELECT_NICHE</span>
-            <select class="filter-select w-100" id="niche-dropdown">
-              <option value="all">ALL_NICHE</option>
-              <option value="Togel">TOGEL</option>
-              <option value="Slot">SLOT</option>
-              <option value="Live Games">LIVE GAMES</option>
-            </select>
+    <main class="container-fluid p-4">
+      <div class="search-container mb-5">
+        <div class="row align-items-center g-3">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span
+                class="input-group-text bg-black border-secondary text-primary"
+                ><i class="bi bi-search"></i
+              ></span>
+              <input
+                type="text"
+                id="search-input"
+                class="form-control bg-black text-white border-secondary shadow-none"
+                placeholder="SEARCH_DATABASE..."
+              />
+            </div>
           </div>
-          <div class="col-6 col-md-auto">
-            <span class="label-tactical">SELECT_TYPE</span>
-            <select class="filter-select w-100" id="type-dropdown">
-              <option value="all">ALL_TYPES</option>
-              <option value="lp">LANDING PAGE</option>
-              <option value="amp">AMP</option>
-              <option value="pwa">PWA</option>
-            </select>
-          </div>
-          <div
-            class="col-12 col-md d-flex align-items-center justify-content-md-end"
-          >
-            <span
-              class="text-muted"
-              style="font-size: 0.6rem; font-weight: 800"
-              id="item-count"
-              >TOTAL: 00</span
+          <div class="col-md-8 text-md-end">
+            <div
+              class="filter-group d-flex gap-2 justify-content-md-end flex-wrap"
             >
+              <button class="filter-btn active" data-filter="ALL">ALL</button>
+              <button class="filter-btn" data-filter="TOGEL">TOGEL</button>
+              <button class="filter-btn" data-filter="SLOT">SLOT</button>
+              <button class="filter-btn" data-filter="AMP">AMP</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="container-fluid py-4 px-3 px-md-5">
-      <div class="row g-3" id="review-target"></div>
-    </div>
+      <div id="project-grid" class="row g-4"></div>
+    </main>
 
     <footer class="simple-footer">
-      <div class="container-fluid">
+      <div class="container-fluid px-4">
         <div class="footer-wrap">
           <div class="footer-section">
             <span class="system-status-dot"></span>
-            <span class="footer-brand">BI-EL_ARCHIVE_SYSTEM_V1</span>
+            <span class="footer-brand">ARCHIVE_SYSTEM_V3</span>
             <span class="footer-divider">|</span>
-            <span id="footer-date" class="footer-meta">2026-04-14</span>
+            <span id="footer-date" class="footer-meta">2026-04-16</span>
           </div>
-
           <div class="footer-copyright d-none d-lg-block">
-            COPYRIGHT © 2026 BI-EL. ALL_RIGHTS_RESERVED.
+            COPYRIGHT © 2026 <span class="text-white">PROPRIETARY_ENGINE</span>.
+            ALL_RIGHTS_RESERVED.
           </div>
-
           <div class="footer-section">
             <span class="footer-meta d-none d-sm-inline"
               >STATUS: <span class="text-white">OPTIMIZED</span></span
@@ -557,14 +262,11 @@
             <span id="footer-clock" class="footer-clock">00:00:00</span>
           </div>
         </div>
-
-        <div class="footer-copyright d-block d-lg-none text-center mt-3">
-          © 2026 PROPRIETARY_ENGINE
-        </div>
       </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="pagedata.js"></script>
     <script>
       const pageData = [
         {
@@ -609,150 +311,90 @@
           thema: "e-commerce",
           url: "lp/ecom2.html",
         },
-        {
-          name: "Slot",
-          type: "Landing Page",
-          niche: "Slot",
-          thema: "e-commerce",
-          url: "lp/slot.html",
-        }
       ];
+      $(document).ready(function () {
+        let currentSearchTerm = "";
+        let currentNicheFilter = "ALL";
 
-      function renderTerminal() {
-        const activeNiche = $("#niche-dropdown").val();
-        const activeType = $("#type-dropdown").val();
-        const $grid = $("#review-target");
+        function renderCards(data) {
+          const $grid = $("#project-grid");
+          $grid.empty();
 
-        $grid.empty();
+          if (data.length === 0) {
+            $grid.append(
+              '<div class="col-12 text-center py-5 text-primary fw-bold">NO_ASSETS_FOUND</div>',
+            );
+            return;
+          }
 
-        const filtered = pageData.filter((item) => {
-          const nicheMatch =
-            activeNiche === "all" || item.niche === activeNiche;
-          const typeMatch = activeType === "all" || item.type === activeType;
-          return nicheMatch && typeMatch;
-        });
-
-        $("#item-count").text(
-          `TOTAL: ${filtered.length.toString().padStart(2, "0")}`,
-        );
-
-        if (filtered.length === 0) {
-          $grid.append(
-            '<div class="col-12 text-center text-muted py-5 small">NO_MATCHING_DATA</div>',
-          );
-          return;
+          data.forEach((item) => {
+            $grid.append(`
+                <div class="col-6 col-md-4 col-lg-3 d-flex">
+                    <div class="review-card w-100">
+                        <div class="niche-tag">${item.niche}</div>
+                        <div class="thema-tag">${item.thema}</div>
+                        <div class="preview-window">
+                            <iframe src="${item.url}" loading="lazy" onload="this.classList.add('loaded')"></iframe>
+                        </div>
+                        <div class="card-body">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-type-label">${item.type}</div>
+                            <div class="card-actions">
+                                <a href="${item.url}" target="_blank" class="btn-action">VIEW</a>
+                                <a href="${item.url}" download="${item.name}.html" class="btn-action">SAVE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`);
+          });
         }
 
-        filtered.forEach((item) => {
-          const html = `
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="review-card">
-                <div class="niche-tag">${item.niche}</div>
-                <div class="thema-tag">${item.thema}</div>
+        function applyFilters() {
+          const filtered = pageData.filter((item) => {
+            // Search by Name or Thema
+            const matchesSearch =
+              item.name
+                .toLowerCase()
+                .includes(currentSearchTerm.toLowerCase()) ||
+              item.thema
+                .toLowerCase()
+                .includes(currentSearchTerm.toLowerCase());
 
-                <div class="preview-window">
-                    <i class="bi bi-display fs-4 text-muted opacity-10" 
-                        style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);"></i>
-                    
-                    <iframe src="${item.url}" loading="lazy" onload="this.classList.add('loaded')"></iframe>
-                </div>
+            // Match Niche exactly as written in your array
+            const matchesNiche =
+              currentNicheFilter === "ALL" ||
+              item.niche.toUpperCase() === currentNicheFilter;
 
-                <div class="card-body">
-                    <div class="item-name" title="${item.name}">${item.name}</div>
-                    <div class="item-type-label">${item.type}</div>
-                    
-                    <div class="card-actions">
-                        <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-action btn-analyze">
-                            <i class="bi bi-eye me-1"></i> VIEW
-                        </a>
-                        
-                        <a href="${item.url}" download="${item.name}.html" class="btn-action btn-download">
-                            <i class="bi bi-download me-1"></i> SAVE
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>`;
-          $grid.append(html);
-        });
-      }
-
-      function triggerDownload(url, fileName) {
-        // 1. Create a "hidden" link
-        const link = document.createElement("a");
-        link.style.display = "none";
-
-        // 2. Set the destination
-        link.href = url;
-
-        // 3. Force the download attribute
-        // Note: This works best if the file is on the same domain or a local folder
-        const cleanName = fileName.replace(/\.[^/.]+$/, ""); // Remove existing extension
-        link.setAttribute("download", cleanName + ".txt");
-
-        // 4. Append, Click, and Remove
-        document.body.appendChild(link);
-        link.click();
-
-        setTimeout(() => {
-          document.body.removeChild(link);
-        }, 100);
-      }
-
-      $(document).ready(function () {
-        renderTerminal();
-        $("#niche-dropdown, #type-dropdown").on("change", renderTerminal);
-      });
-
-      /**
-       * Forces the browser to download a URL as a physical .html file.
-       * Uses Fetch + Blob to bypass the browser's tendency to just open a new tab.
-       */
-      function downloadHTML(url, fileName) {
-        // 1. Fetch the data from the URL
-        fetch(url)
-          .then((response) => {
-            if (!response.ok) throw new Error("Network response was not ok");
-            return response.blob();
-          })
-          .then((blob) => {
-            // 2. Convert the blob to a 'forced' binary stream
-            // This is the trick to stop the browser from trying to "render" the HTML
-            const forcedBlob = new Blob([blob], {
-              type: "application/octet-stream",
-            });
-
-            // 3. Create a temporary local URL for this data
-            const blobUrl = window.URL.createObjectURL(forcedBlob);
-
-            // 4. Create an invisible anchor to trigger the save
-            const link = document.createElement("a");
-            link.href = blobUrl;
-
-            // Ensure the filename ends with .html
-            const cleanName = fileName.split(".")[0];
-            link.download = `${cleanName}.html`;
-
-            // 5. Trigger the click and cleanup
-            document.body.appendChild(link);
-            link.click();
-
-            // Small delay for cleanup to ensure the download starts
-            setTimeout(() => {
-              document.body.removeChild(link);
-              window.URL.revokeObjectURL(blobUrl);
-            }, 100);
-          })
-          .catch((error) => {
-            console.error("Download failed:", error);
-            // FALLBACK: If CORS blocks the fetch, we try a direct link
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = fileName + ".html";
-            link.target = "_blank";
-            link.click();
+            return matchesSearch && matchesNiche;
           });
-      }
+          renderCards(filtered);
+        }
+
+        // Search input listener
+        $("#search-input").on("input", function () {
+          currentSearchTerm = $(this).val();
+          applyFilters();
+        });
+
+        // Filter button listener
+        $(document).on("click", ".filter-btn", function () {
+          $(".filter-btn").removeClass("active");
+          $(this).addClass("active");
+          currentNicheFilter = $(this).data("filter");
+          applyFilters();
+        });
+
+        // System Clock
+        function updateTime() {
+          const now = new Date();
+          $("#footer-clock").text(now.toTimeString().split(" ")[0]);
+          $("#footer-date").text(now.toISOString().split("T")[0]);
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+        renderCards(pageData);
+      });
     </script>
   </body>
 </html>
