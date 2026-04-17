@@ -62,11 +62,11 @@
     <nav class="navbar navbar-expand-lg border-bottom border-secondary py-3">
       <div class="container-fluid px-4">
         <a class="navbar-brand fw-black letter-spacing-2" href="#"
-          ><span class="text-primary">CORE</span>_TERMINAL</a
+          ><span class="text-primary">GALLERY</a
         >
         <div class="ms-auto d-flex align-items-center">
           <span
-            class="badge bg-dark border border-secondary text-muted py-2 px-3"
+            class="badge bg-dark border border-secondary text-light py-2 px-3"
           >
             <span class="system-status-dot me-2"></span>SYSTEM_ONLINE
           </span>
@@ -117,7 +117,7 @@
             <span id="footer-date" class="footer-meta">2026-04-16</span>
           </div>
           <div class="footer-copyright d-none d-lg-block">
-            COPYRIGHT © 2026 <span class="text-white">PROPRIETARY_ENGINE</span>.
+            COPYRIGHT © 2026 <span class="text-white">PROPRIETARY_BI-EL</span>
             ALL_RIGHTS_RESERVED.
           </div>
           <div class="footer-section">
@@ -200,43 +200,55 @@
           if (e.key === "Escape") $("#close-modal").click();
         });
 
+        // 1. New Sorting Function
+        function sortDataByDate(data) {
+          return data.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date);
+          });
+        }
+
         function renderCards(data) {
           const $grid = $("#project-grid");
           $grid.empty();
 
-          if (data.length === 0) {
+          // Sort data before rendering
+          const sortedData = sortDataByDate(data);
+
+          if (sortedData.length === 0) {
             $grid.append(
               '<div class="col-12 text-center py-5 text-primary fw-bold">NO_ASSETS_FOUND</div>',
             );
             return;
           }
 
-         data.forEach((item) => {
-    $grid.append(`
-        <div class="col-6 col-md-4 col-lg-3 d-flex">
-            <div class="review-card w-100">
-                <div class="niche-tag">${item.niche}</div>
-                <div class="thema-tag">${item.thema}</div>
-                <div class="preview-window" onclick="openPreview('${item.url}', '${item.name}')">
-                    <iframe src="${item.url}" loading="lazy" onload="this.classList.add('loaded')"></iframe>
-                    <div class="preview-overlay"><i class="bi bi-fullscreen"></i></div>
-                </div>
-                <div class="card-body">
-                    <div class="item-name">${item.name}</div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <div class="item-type-label">${item.type}</div>
-                        <div class="item-date-label">[${item.date}]</div>
+          sortedData.forEach((item) => {
+            $grid.append(`
+                <div class="col-6 col-md-4 col-lg-3 d-flex">
+                    <div class="review-card w-100">
+                        <div class="niche-tag">${item.niche}</div>
+                        <div class="thema-tag">${item.thema}</div>
+                        <div class="preview-window" onclick="openPreview('${item.url}', '${item.name}')">
+                            <iframe src="${item.url}" loading="lazy" onload="this.classList.add('loaded')"></iframe>
+                            <div class="preview-overlay"><i class="bi bi-fullscreen"></i></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="item-name">${item.name}</div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div class="item-type-label">${item.type}</div>
+                                <div class="item-date-label">${item.date}</div>
+                            </div>
+                            <div class="card-actions">
+                                <button onclick="openPreview('${item.url}', '${item.name}')" class="btn-action">
+                                  <i class="bi bi-play-btn"></i> PREVIEW
+                                </button>
+                                <button onclick="downloadAsset('${item.url}', '${item.name}')" class="btn-action">
+                                    DOWNLOAD <i class="bi bi-download"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-actions">
-                        <button onclick="openPreview('${item.url}', '${item.name}')" class="btn-action">PREVIEW</button>
-                        <button onclick="downloadAsset('${item.url}', '${item.name}')" class="btn-action">
-                            <i class="bi bi-download"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>`);
-});
+                </div>`);
+          });
         }
 
         function applyFilters() {
