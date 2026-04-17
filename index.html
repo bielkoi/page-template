@@ -8,7 +8,8 @@
       content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
     />
     <title>BI-EL | Tamplate Gallery</title>
-    <link rel="shortcut icon"
+    <link
+      rel="shortcut icon"
       href="https://bielkoi.github.io/bielkoi-asset/img/png/b-logo.png"
       type="image/png"
     />
@@ -32,12 +33,12 @@
       property="og:url"
       content="https://bielkoi.github.io/page-template/"
     />
-    <meta property="og:site_name" content="BI-EL"/>
+    <meta property="og:site_name" content="BI-EL" />
 
-    <meta name="twitter:site" content="@bielkoi"/>
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="BI-EL"/>
-    <meta name="twitter:description" content="BI-EL"/>
+    <meta name="twitter:site" content="@bielkoi" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="BI-EL" />
+    <meta name="twitter:description" content="BI-EL" />
     <meta
       name="twitter:image"
       content="https://bielkoi.github.io/asset/img/biel-logo-100.png"
@@ -56,7 +57,6 @@
       rel="stylesheet"
       href="https://bielkoi.github.io/bielkoi-asset/css/biels-dkfj2ijiwsjdsa.css"
     />
-
   </head>
   <body class="bg-black text-white">
     <nav class="navbar navbar-expand-lg border-bottom border-secondary py-3">
@@ -131,13 +131,74 @@
       </div>
     </footer>
 
+    <div id="preview-modal" class="terminal-modal">
+      <div class="modal-backdrop-blur"></div>
+      <div class="modal-content-wrapper">
+        <div class="modal-toolbar">
+          <div class="toolbar-left">
+            <span class="status-dot blink"></span>
+            <span id="modal-project-name">PROJECT_PREVIEW</span>
+          </div>
+          <div class="toolbar-right">
+            <button class="modal-ctrl-btn" id="close-modal">
+              <i class="bi bi-x-lg"></i> CLOSE_ESC
+            </button>
+          </div>
+        </div>
+        <div class="modal-body-frame">
+          <iframe id="fullscreen-iframe" src=""></iframe>
+        </div>
+      </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://bielkoi.github.io/bielkoi-asset/js/biel-dkfj2ijiwsjdsa.js"></script>
     <script>
-      
       $(document).ready(function () {
         let currentSearchTerm = "";
         let currentNicheFilter = "ALL";
+
+        // Function to handle asset download
+        window.downloadAsset = function (url, filename) {
+          const link = document.createElement("a");
+          link.href = url;
+
+          // Attempt to force download
+          // Note: Works best if the URL is on the same domain or has CORS headers
+          link.setAttribute(
+            "download",
+            filename.replace(/\s+/g, "_").toUpperCase() + ".html",
+          );
+
+          // For external github/other URLs, this will open in new tab if download is blocked
+          link.target = "_blank";
+
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          console.log(`INITIATING_DOWNLOAD: ${filename}`);
+        };
+
+        // Function to Open Modal
+        window.openPreview = function (url, name) {
+          $("#modal-project-name").text(name.toUpperCase());
+          $("#fullscreen-iframe").attr("src", url);
+          $("#preview-modal").addClass("active");
+          $("body").css("overflow", "hidden"); // Prevent scrolling
+        };
+
+        // Close Modal Logic
+        $("#close-modal").on("click", function () {
+          $("#preview-modal").removeClass("active");
+          $("#fullscreen-iframe").attr("src", ""); // Stop audio/video in iframe
+          $("body").css("overflow", "auto");
+        });
+
+        // Close on ESC key
+        $(document).on("keyup", function (e) {
+          if (e.key === "Escape") $("#close-modal").click();
+        });
 
         function renderCards(data) {
           const $grid = $("#project-grid");
@@ -150,26 +211,32 @@
             return;
           }
 
-          data.forEach((item) => {
-            $grid.append(`
-                <div class="col-6 col-md-4 col-lg-3 d-flex">
-                    <div class="review-card w-100">
-                        <div class="niche-tag">${item.niche}</div>
-                        <div class="thema-tag">${item.thema}</div>
-                        <div class="preview-window">
-                            <iframe src="${item.url}" loading="lazy" onload="this.classList.add('loaded')"></iframe>
-                        </div>
-                        <div class="card-body">
-                            <div class="item-name">${item.name}</div>
-                            <div class="item-type-label">${item.type}</div>
-                            <div class="card-actions">
-                                <a href="${item.url}" target="_blank" class="btn-action">VIEW</a>
-                                <a href="${item.url}" download="${item.name}.html" class="btn-action">SAVE</a>
-                            </div>
-                        </div>
+         data.forEach((item) => {
+    $grid.append(`
+        <div class="col-6 col-md-4 col-lg-3 d-flex">
+            <div class="review-card w-100">
+                <div class="niche-tag">${item.niche}</div>
+                <div class="thema-tag">${item.thema}</div>
+                <div class="preview-window" onclick="openPreview('${item.url}', '${item.name}')">
+                    <iframe src="${item.url}" loading="lazy" onload="this.classList.add('loaded')"></iframe>
+                    <div class="preview-overlay"><i class="bi bi-fullscreen"></i></div>
+                </div>
+                <div class="card-body">
+                    <div class="item-name">${item.name}</div>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="item-type-label">${item.type}</div>
+                        <div class="item-date-label">[${item.date}]</div>
                     </div>
-                </div>`);
-          });
+                    <div class="card-actions">
+                        <button onclick="openPreview('${item.url}', '${item.name}')" class="btn-action">PREVIEW</button>
+                        <button onclick="downloadAsset('${item.url}', '${item.name}')" class="btn-action">
+                            <i class="bi bi-download"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>`);
+});
         }
 
         function applyFilters() {
