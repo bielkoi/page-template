@@ -53,17 +53,14 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://bielkoi.github.io/bielkoi-asset/css/biels-dkfj2ijiwsjdsa.css"
-    />
+    <link rel="stylesheet" href="https://bielkoi.github.io/bielkoi-asset/css/biels-dkfj2ijiwsjdsa.css"/>
   </head>
   <body class="bg-black text-white">
     <nav class="navbar navbar-expand-lg border-bottom border-secondary py-3">
       <div class="container-fluid px-4">
-        <a class="navbar-brand fw-black letter-spacing-2" href="#"
-          ><span class="text-primary">GALLERY LP & AMP</a
-        >
+        <a class="navbar-brand fw-black letter-spacing-2" href="#">
+          <span class="text-primary">GALLERY LP & AMP</span>
+        </a>
         <div class="ms-auto d-flex align-items-center">
           <span
             class="badge bg-dark border border-secondary text-light py-2 px-3"
@@ -78,16 +75,16 @@
       <div class="search-container mb-5">
         <div class="row align-items-center g-3">
           <div class="col-md-4">
-            <div class="input-group">
-              <span
-                class="input-group-text bg-black border-white text-primary"
-                ><i class="bi bi-search"></i
-              ></span>
+            <div class="input-group search-wrapper">
+              <span class="input-group-text">
+                <i class="bi bi-search"></i>
+              </span>
               <input
                 type="text"
                 id="search-input"
-                class="form-control bg-black border-secondary text-primary shadow-none"
+                class="form-control"
                 placeholder="SEARCH_DATABASE..."
+                autocomplete="off"
               />
             </div>
           </div>
@@ -154,6 +151,60 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://bielkoi.github.io/bielkoi-asset/js/biel-dkfj2ijiwsjdsa.js"></script>
     <script>
+      // 1. Fungsi Toast (Harus di luar $(document).ready)
+      function showToast(message) {
+        console.log("NOTIFICATION_TRIGGERED: " + message);
+
+        $(".terminal-toast").remove();
+
+        // Create notification structure
+        const toastHtml = `
+        <div class="terminal-toast">
+            <div class="terminal-toast-msg">
+                <div class="terminal-toast-title">SYSTEM_NOTIFICATION</div>
+                <div class="terminal-toast-content">${message}</div>
+            </div>
+        </div>
+    `;
+
+        const $toast = $(toastHtml);
+        $("body").append($toast);
+
+        // Show notification
+        setTimeout(() => {
+          $toast.addClass("show");
+        }, 100);
+
+        // Auto-hide after 3 seconds
+        setTimeout(() => {
+          $toast.removeClass("show");
+          setTimeout(() => $toast.remove(), 400);
+        }, 3000);
+      }
+
+      // 2. Fungsi Copy (Harus di luar $(document).ready)
+      window.copyToClipboard = function (text) {
+        if (!navigator.clipboard) {
+          // Fallback untuk browser non-HTTPS
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textArea);
+          showToast("LINK_COPIED_SUCCESS");
+        } else {
+          navigator.clipboard
+            .writeText(text)
+            .then(() => {
+              showToast("LINK_COPIED_TO_CLIPBOARD");
+            })
+            .catch((err) => {
+              showToast("COPY_FAILED");
+              console.error(err);
+            });
+        }
+      };
       $(document).ready(function () {
         let currentSearchTerm = "";
         let currentNicheFilter = "ALL";
@@ -211,7 +262,6 @@
           const $grid = $("#project-grid");
           $grid.empty();
 
-          // Sort data before rendering
           const sortedData = sortDataByDate(data);
 
           if (sortedData.length === 0) {
@@ -222,8 +272,7 @@
           }
 
           sortedData.forEach((item) => {
-            // Determine the color class based on Niche
-    const nicheClass = `card-niche-${item.niche.toLowerCase()}`;
+            const nicheClass = `card-niche-${item.niche.toLowerCase()}`;
             $grid.append(`
         <div class="col-6 col-md-4 col-lg-3 d-flex">
             <div class="review-card w-100 ${nicheClass}">
@@ -241,11 +290,17 @@
                         <div class="item-type-label">${item.type}</div>
                         <div class="item-date-label">${item.date}</div>
                     </div>
-                    <div class="card-actions">
-                        <button onclick="openPreview('${item.url}', '${item.name}')" class="btn-action btn-main">PREVIEW</button>
-                        <button onclick="downloadAsset('${item.url}', '${item.name}')" class="btn-action">
-                            DOWNLOAD<i class="bi bi-download"></i>
-                        </button>
+                    
+                    <div class="card-actions d-flex flex-column gap-2">
+                        <div class="d-flex gap-2">
+                          <button onclick="openPreview('${item.url}', '${item.name}')" class="btn-action btn-main flex-grow-1">PREVIEW</button>
+                          <button onclick="copyToClipboard('https://bielkoi.github.io/page-template/${item.url}')" class="btn-action px-3">
+                              COPY LINK<i class="bi bi-link-45deg"></i>
+                          </button>
+                      </div>
+                      <button onclick="downloadAsset('${item.url}', '${item.name}')" class="btn-action w-100">
+                        <i class="bi bi-download me-2"></i> DOWNLOAD HTML
+                      </button>
                     </div>
                 </div>
             </div>
