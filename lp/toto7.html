@@ -48,6 +48,7 @@
         --bg-light: #f7f8f9;
         --text-dark: #333;
         --search-grey: #4c4c4c;
+        --gading: linear-gradient(to bottom, #eaeaea, #dbdbdb, #f2f2f2, #ada996);
       }
 
       body {
@@ -158,7 +159,7 @@
 
       /* Promo Bar */
       .promo-bar {
-        background-color: var(--bg-light);
+        background-color: #a10013;
         padding: 12px 0;
         border-top: 1px solid #e6e8ea;
         border-bottom: 1px solid #e6e8ea;
@@ -191,6 +192,7 @@
         padding: 30px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         border: 1px solid #f0f0f0;
+       
       }
 
       /* Accordion Customization */
@@ -846,23 +848,23 @@
     </style>
   </head>
   <body>
-    <nav class="top-nav d-none d-md-block">
+    <nav class="top-nav d-none d-md-block bg-dark">
       <div class="container d-flex justify-content-end py-2">
-        <a href="#" class="text-dark me-4 text-decoration-none"
+        <a href="#" class="text-light me-4 text-decoration-none"
           ><i class="bi bi-truck me-1"></i> Track Order</a
         >
-        <a href="#" class="text-dark me-4 text-decoration-none"
+        <a href="#" class="text-light me-4 text-decoration-none"
           ><i class="bi bi-geo-alt me-1"></i> Stores</a
         >
-        <a href="#" class="text-dark text-decoration-none"
+        <a href="#" class="text-light text-decoration-none"
           ><i class="bi bi-info-circle me-1"></i> Help</a
         >
       </div>
     </nav>
 
     <header
-      class="main-header sticky-top shadow-sm bg-white py-2 transition-all"
-    >
+      class="main-header sticky-top shadow-sm py-2 transition-all"
+    style="background-image: var(--gading);">
       <div class="container">
         <div class="row align-items-center g-2">
           <div class="col-6 col-lg-3">
@@ -1284,17 +1286,17 @@
       </div>
     </header>
 
-    <section class="promo-bar">
+    <section class="promo-bar text-light">
       <div class="container">
         <div class="row text-center gy-2">
           <div class="col-md-4 promo-item">
-            <i class="bi bi-shield-check"></i> Lisensi Resmi Terpercaya
+            <i class="bi bi-shield-check text-light"></i> Lisensi Resmi Terpercaya
           </div>
           <div class="col-md-4 promo-item border-md-start border-md-end">
-            <i class="bi bi-lightning-charge"></i> Transaksi Kilat
+            <i class="bi bi-lightning-charge text-light"></i> Transaksi Kilat
           </div>
           <div class="col-md-4 promo-item">
-            <i class="bi bi-headset"></i> Bantuan 24/7
+            <i class="bi bi-headset text-light"></i> Bantuan 24/7
           </div>
         </div>
       </div>
@@ -1320,7 +1322,7 @@
     <main class="container my-4">
       <div class="row g-4 align-items-stretch">
         <div class="col-12 col-md-7">
-          <div class="bg-white rounded-3 p-3 shadow border h-100">
+          <div class="rounded-3 p-3 shadow border h-100">
             <div class="position-relative text-center mb-4 p-2">
               <img
                 src="https://imgmahasuhu.io/images/2026/04/15/login-vipp.jpeg"
@@ -1542,6 +1544,27 @@
                 transparansi. KOITOTO memahami hal ini dengan mengintegrasikan
                 sistem keamanan terbaru untuk melindungi setiap akun member.
               </p>
+              <p>
+                Apa yang membuat KOITOTO berbeda dari platform lainnya di tahun 2026?
+              </p>
+              <ul>
+                <li>
+                  Akses Multidevice: Antarmuka yang responsif memungkinkan Anda bermain dengan lancar melalui smartphone, tablet, maupun desktop tanpa perlu mengunduh aplikasi tambahan yang berat.
+                  
+                </li>
+                <li>
+                  Transaksi Kilat: Dukungan sistem perbankan otomatis dan e-wallet memastikan proses deposit dan withdraw selesai dalam hitungan detik, bahkan di jam-jam sibuk.
+                </li>
+                <li>
+                  Pasaran Internasional Terlengkap: Mulai dari pasaran legendaris seperti Singapore (SGP), Hongkong (HK), hingga Sydney (SDY), semua tersedia dengan struktur hadiah yang kompetitif.
+                </li>
+              </ul>
+              <p>
+                Tak hanya unggul sebagai bandar togel, KOITOTO juga bertransformasi menjadi pusat hiburan games online terlengkap. Bekerja sama dengan provider kelas dunia seperti Pragmatic Play dan PG Soft, KOITOTO menghadirkan ratusan pilihan permainan dengan grafis premium dan mekanisme yang adil (fair play).
+              </p>
+              <p>
+                Kepercayaan member adalah aset terbesar kami. Oleh karena itu, tim Customer Service profesional KOITOTO selalu bersiaga selama 24 jam penuh melalui LiveChat, WhatsApp, dan Telegram untuk memberikan solusi instan atas setiap kendala yang Anda hadapi.
+              </p>
             </div>
             <div class="blog-footer mt-4 pt-3 border-top d-flex gap-2">
               <a class="text-decoration-none" href="#"><span class="badge-tag">#KOITOTO</span></a>
@@ -1630,6 +1653,48 @@
                   </div>
                 </div>
               </div>
+              <div class="accordion-item border-bottom">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed fw-bold small py-3 px-0 bg-transparent shadow-none"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq4"
+                  >
+                    Apakah KOITOTO bisa diakses melalui HP tanpa aplikasi?
+                  </button>
+                </h2>
+                <div
+                  id="faq4"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body px-0 py-2 small text-muted">
+                    Tentu saja. Situs KOITOTO sudah menggunakan teknologi HTML5 yang sangat responsif. Anda cukup membuka browser di smartphone (Chrome/Safari) dan tampilan akan otomatis menyesuaikan layar HP Anda dengan sangat ringan dan cepat.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item border-bottom">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed fw-bold small py-3 px-0 bg-transparent shadow-none"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq5"
+                  >
+                    Bagaimana jika saya lupa kata sandi akun saya?
+                  </button>
+                </h2>
+                <div
+                  id="faq5"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body px-0 py-2 small text-muted">
+                    Jangan khawatir. Anda dapat menggunakan fitur "Lupa Password" di halaman login atau langsung menghubungi layanan Customer Service kami melalui LiveChat atau WhatsApp. Tim kami akan membantu memulihkan akun Anda dalam waktu kurang dari 3 menit.
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="mt-4">
@@ -1655,7 +1720,7 @@
 
         <div class="review-slider">
           <div class="px-2">
-            <div class="blog-shadow-card p-4 border-0">
+            <div class="blog-shadow-card p-4 border-0" style=" background-image: linear-gradient(to bottom, #eaeaea, #dbdbdb, #f2f2f2, #ada996);">
               <div class="d-flex align-items-center mb-3">
                 <div
                   class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-2"
@@ -1686,7 +1751,7 @@
           </div>
 
           <div class="px-2">
-            <div class="blog-shadow-card p-4 border-0">
+            <div class="blog-shadow-card p-4 border-0" style=" background-image: linear-gradient(to bottom, #eaeaea, #dbdbdb, #f2f2f2, #ada996);">
               <div class="d-flex align-items-center mb-3">
                 <div
                   class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2"
@@ -1717,7 +1782,7 @@
           </div>
 
           <div class="px-2">
-            <div class="blog-shadow-card p-4 border-0">
+            <div class="blog-shadow-card p-4 border-0" style=" background-image: linear-gradient(to bottom, #eaeaea, #dbdbdb, #f2f2f2, #ada996);">
               <div class="d-flex align-items-center mb-3">
                 <div
                   class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center me-2"
@@ -1747,7 +1812,7 @@
             </div>
           </div>
           <div class="px-2">
-            <div class="blog-shadow-card p-4 border-0">
+            <div class="blog-shadow-card p-4 border-0" style=" background-image: linear-gradient(to bottom, #eaeaea, #dbdbdb, #f2f2f2, #ada996);">
               <div class="d-flex align-items-center mb-3">
                 <div
                   class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center me-2"
@@ -1777,7 +1842,7 @@
             </div>
           </div>
           <div class="px-2">
-            <div class="blog-shadow-card p-4 border-0">
+            <div class="blog-shadow-card p-4 border-0" style=" background-image: linear-gradient(to bottom, #eaeaea, #dbdbdb, #f2f2f2, #ada996);">
               <div class="d-flex align-items-center mb-3">
                 <div
                   class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-2"
@@ -1807,7 +1872,7 @@
             </div>
           </div>
           <div class="px-2">
-            <div class="blog-shadow-card p-4 border-0">
+            <div class="blog-shadow-card p-4 border-0" style=" background-image: linear-gradient(to bottom, #eaeaea, #dbdbdb, #f2f2f2, #ada996);">
               <div class="d-flex align-items-center mb-3">
                 <div
                   class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-2"
@@ -1840,16 +1905,6 @@
       </div>
     </section>
 
-    <style>
-      /* Styling tambahan untuk merapikan kartu */
-      .blog-shadow-card {
-        background: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-        border: 1px solid #f8f9fa;
-        min-height: 220px; /* Menjaga tinggi kartu tetap seragam */
-      }
-    </style>
     <footer class="bg-white pt-5 pb-4 border-top mt-5">
       <div class="container">
         <div class="row g-4">
